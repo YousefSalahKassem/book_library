@@ -1,0 +1,36 @@
+name: book_library
+description: An new Dart Frog application
+version: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  dart_frog: ^0.3.0
+
+  #utils
+  dart_jsonwebtoken: ^2.5.0
+  encrypt: ^5.0.1
+  equatable: ^2.0.5
+  json_annotation: ^4.8.0
+  uuid: ^3.0.6
+
+  #analysis and debugging
+  intl: any
+  logger: ^1.1.0
+
+
+  #database and server
+  mongo_dart: ^0.8.0
+  mockito: ^5.4.2
+
+
+
+dev_dependencies:
+  mocktail: ^0.3.0
+  test: ^1.19.2
+  very_good_analysis: ^5.0.0
+  build_runner: ^2.3.3
+  flutter_lints: ^2.0.0
+  json_serializable: ^6.6.1
