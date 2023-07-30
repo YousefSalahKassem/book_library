@@ -23,7 +23,6 @@ class AuthRepositoryImpl implements AuthRepository {
     if (_mongoClient.db != null) {
       final collection = _mongoClient.db!.collection(Constants.authCollection);
       final user = await collection.findOne(where.eq('token', token));
-      print(user);
       if (user != null) {
         final userDbModel = UserDbModel.fromMap(user);
         if (userDbModel.password ==
@@ -64,7 +63,7 @@ class AuthRepositoryImpl implements AuthRepository {
         userReq
             .copyWith(
               token:
-                  _generateToken(userReq.name, userReq.email, userReq.password),
+                  _generateToken( userReq.email),
             )
             .toMap(),
       );
@@ -109,9 +108,7 @@ class AuthRepositoryImpl implements AuthRepository {
             email: user.email,
             password: user.password,
             token: _generateToken(
-              user.name,
               user.email,
-              user.password,
             ),
           ),
         );
@@ -196,11 +193,9 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   /// generate token for user
-  String _generateToken(String name, String email, String password) {
+  String _generateToken(String email) {
     final claims = <String, dynamic>{
       'email': email,
-      'name': name,
-      'password': password,
     };
 
     final token = JWTUtilis.generateToken(claims);
